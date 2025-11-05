@@ -1,3 +1,5 @@
+# affine.py
+
 def affine_encrypt(plaintext, a, b):
     ciphertext = ""
     for char in plaintext.upper():
@@ -19,13 +21,9 @@ def affine_decrypt(ciphertext, a, b):
 
 if __name__ == "__main__":
     print("=== Affine Cipher ===")
-
-    plaintext = "DESIRAMADANI"
-    a = 5      
-    b = 8
-
-    print("Plaintext :", plaintext)
-    print("a =", a, "| b =", b)
+    plaintext = input("Masukkan plaintext: ")
+    a = int(input("Masukkan nilai a (coprime dengan 26): "))
+    b = int(input("Masukkan nilai b: "))
 
     cipher = affine_encrypt(plaintext, a, b)
     print("Ciphertext:", cipher)

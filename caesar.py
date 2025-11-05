@@ -1,3 +1,5 @@
+# caesar.py
+
 def caesar_encrypt(plaintext, shift):
     ciphertext = ""
     for char in plaintext.upper():
@@ -12,12 +14,8 @@ def caesar_decrypt(ciphertext, shift):
 
 if __name__ == "__main__":
     print("=== Caesar Cipher ===")
-
-    plaintext = "DESI RAMADANI"
-    shift = 2
-
-    print("Plaintext:", plaintext)
-    print("Shift:", shift)
+    plaintext = input("Masukkan plaintext: ")
+    shift = int(input("Masukkan shift: "))
 
     cipher = caesar_encrypt(plaintext, shift)
     print("Ciphertext:", cipher)

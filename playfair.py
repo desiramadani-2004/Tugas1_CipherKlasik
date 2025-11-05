@@ -1,3 +1,5 @@
+# playfair.py
+
 def generate_playfair_key(key):
     key = "".join(sorted(set(key.upper()), key=key.index))
     alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ"
@@ -38,34 +40,10 @@ def playfair_encrypt(plaintext, key):
             result += matrix[ax][by] + matrix[bx][ay]
     return result
 
-def playfair_decrypt(ciphertext, key):
-    matrix = generate_playfair_key(key)
-    result = ""
-    i = 0
-    while i < len(ciphertext):
-        a = ciphertext[i]
-        b = ciphertext[i+1]
-        ax, ay = find_position(matrix, a)
-        bx, by = find_position(matrix, b)
-        if ax == bx:
-            result += matrix[ax][(ay-1)%5] + matrix[bx][(by-1)%5]
-        elif ay == by:
-            result += matrix[(ax-1)%5][ay] + matrix[(bx-1)%5][by]
-        else:
-            result += matrix[ax][by] + matrix[bx][ay]
-        i += 2
-    return result
-
-
 if __name__ == "__main__":
     print("=== Playfair Cipher ===")
-
-    plaintext = "DESIRAMADANI"
-    key = "CANTIK"
-
-    print("Plaintext:", plaintext)
-    print("Key:", key)
+    plaintext = input("Masukkan plaintext: ")
+    key = input("Masukkan key: ")
 
     cipher = playfair_encrypt(plaintext, key)
     print("Ciphertext:", cipher)
-    print("Hasil dekripsi:", playfair_decrypt(cipher, key))

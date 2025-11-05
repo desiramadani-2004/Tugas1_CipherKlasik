@@ -1,3 +1,5 @@
+# vigenere.py
+
 def vigenere_encrypt(plaintext, key):
     ciphertext = ""
     key = key.upper()
@@ -24,15 +26,10 @@ def vigenere_decrypt(ciphertext, key):
             plaintext += char
     return plaintext
 
-
 if __name__ == "__main__":
     print("=== Vigenere Cipher ===")
-
-    plaintext = "DESIRAMADANI"
-    key = "CANTIK"
-
-    print("Plaintext:", plaintext)
-    print("Key:", key)
+    plaintext = input("Masukkan plaintext: ")
+    key = input("Masukkan key: ")
 
     cipher = vigenere_encrypt(plaintext, key)
     print("Ciphertext:", cipher)

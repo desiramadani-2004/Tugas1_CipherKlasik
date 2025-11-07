@@ -1,36 +1,41 @@
-# vigenere.py
-
-def vigenere_encrypt(plaintext, key):
-    ciphertext = ""
+def vigenere_encrypt(plain, key):
+    cipher = ""
     key = key.upper()
-    key_index = 0
-    for char in plaintext.upper():
-        if char.isalpha():
-            shift = ord(key[key_index % len(key)]) - 65
-            ciphertext += chr((ord(char) - 65 + shift) % 26 + 65)
-            key_index += 1
+    idx = 0
+    for ch in plain.upper():
+        if ch.isalpha():
+            shift = ord(key[idx % len(key)]) - 65
+            cipher += chr((ord(ch) - 65 + shift) % 26 + 65)
+            idx += 1
         else:
-            ciphertext += char
-    return ciphertext
+            cipher += ch
+    return cipher
 
-def vigenere_decrypt(ciphertext, key):
-    plaintext = ""
+def vigenere_decrypt(cipher, key):
+    plain = ""
     key = key.upper()
-    key_index = 0
-    for char in ciphertext.upper():
-        if char.isalpha():
-            shift = ord(key[key_index % len(key)]) - 65
-            plaintext += chr((ord(char) - 65 - shift) % 26 + 65)
-            key_index += 1
+    idx = 0
+    for ch in cipher.upper():
+        if ch.isalpha():
+            shift = ord(key[idx % len(key)]) - 65
+            plain += chr((ord(ch) - 65 - shift) % 26 + 65)
+            idx += 1
         else:
-            plaintext += char
-    return plaintext
+            plain += ch
+    return plain
 
 if __name__ == "__main__":
     print("=== Vigenere Cipher ===")
-    plaintext = input("Masukkan plaintext: ")
+    mode = input("Pilih mode (E = Enkripsi, D = Dekripsi): ").upper()
     key = input("Masukkan key: ")
 
-    cipher = vigenere_encrypt(plaintext, key)
-    print("Ciphertext:", cipher)
-    print("Hasil dekripsi:", vigenere_decrypt(cipher, key))
+    if mode == "E":
+        teks = input("Masukkan plaintext: ")
+        hasil = vigenere_encrypt(teks, key)
+        print("Ciphertext:", hasil)
+    elif mode == "D":
+        teks = input("Masukkan ciphertext: ")
+        hasil = vigenere_decrypt(teks, key)
+        print("Plaintext:", hasil)
+    else:
+        print("Mode tidak dikenali, pilih E atau D.")
